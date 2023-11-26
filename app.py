@@ -1,8 +1,45 @@
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
-import uvicorn
+from pydantic import BaseModel
+
+
+class PodDetails(BaseModel):
+    pod_number: str
+    date_of_delivery: str
+    time_of_delivery: str
+    delivery_location: str
+    delivery_picture: str
+    receiver_name: str
+    receiver_signature: str
 
 
 app = FastAPI()
 
 templates = Jinja2Templates(directory="templates")
+
+
+pod = {
+    "pod_number": "123456789",
+    "customer_name": "Royal Melbourne",
+    "date_of_delivery": "01-11-2023",
+    "time_of_delivery": "12:00",
+    "delivery_location": "Melbourne",
+    "delivery_picture": "https://www.google.com",
+    "receiver_name": "John Doe",
+    "receiver_signature": "https://signaturely.com/wp-content/uploads/2020/04/embellished-letters-signaturely.svg",
+}
+
+
+@app.get("/")
+async def hello(request: Request):
+    return templates.TemplateResponse(
+        "index.html", {"request": request, "pod_details": pod}
+    )
+
+
+@app.post("/email-pod")
+async def email_pod_pdf(pod_details: PodDetails, request: Request):
+    parsed_html = templates.TemplateResponse(
+        "index.html", {"request": request, "pod_details": pod}
+    )
+    return parsed_html
