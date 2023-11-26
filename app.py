@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
+from fpdf import FPDF
 
 
 class PodDetails(BaseModel):
@@ -14,6 +15,8 @@ class PodDetails(BaseModel):
 
 
 app = FastAPI()
+
+pdf = FPDF()
 
 templates = Jinja2Templates(directory="templates")
 
@@ -40,6 +43,9 @@ async def hello(request: Request):
 @app.post("/email-pod")
 async def email_pod_pdf(pod_details: PodDetails, request: Request):
     parsed_html = templates.TemplateResponse(
-        "index.html", {"request": request, "pod_details": pod}
+        "index.html", {"request": request, "pod_details": pod_details}
     )
+    # pdf.add_page()
+    # pdf.write_html(parsed_html.body.decode("utf-8"))
+    # pdf.output("output.pdf")
     return parsed_html
