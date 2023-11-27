@@ -11,54 +11,56 @@
 <body>
   <div class="container mx-14 mt-10">
     <div class="grid grid-cols-2 gap-4 ">
-      <h2 class="text-2xl font-bold">
+      <h2 class="text-2xl font-bold" style="color: black;">
         Proof of Delivery
       </h2>
-      <img class="rounded-full w-2/3"
+      <img class="rounded-full w-2/3" style="width: 50%;"
         src="https://static.wixstatic.com/media/f9957e_a74dbd0fc6544a03aac87eb9eebee658~mv2.jpg/v1/fill/w_480,h_69,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/f9957e_a74dbd0fc6544a03aac87eb9eebee658~mv2.jpg"/>
       
       <div class="flex flex-col mt-10 gap-2">
-        <h3 class="text-lg">
+        <h3 class="text-lg" style="color: black;">
             {{pod_details['date_of_delivery']}}
         </h3>
-        <h3 class="text-lg">
+        <h3 class="text-lg" style="color: black;">
             Dear Customer,
         </h3>
-        <h3 class="text-lg">
+        <h3 class="text-lg" style="color: black;">
           The following is a proof of delivery for order number: <b>{{pod_details['pod_number']}}</b>
       </h3>
       </div>
       <div></div>
-      <h3 class="text-lg font-bold mt-4">
+      <h3 class="text-lg font-bold mt-4" style="color: black;">
+        <b>
         Delivery Information:
+      </b>
       </h3>
       <div></div>
-      <div class="col-span-2">
+      <div class="col-span-2" style="margin-top: 10px;">
         <table class="w-3/4 text-md text-left rtl:text-right text-gray-800 dark:text-gray-400">
           <tbody>
-          <tr>
+          <tr style="margin: 10px 0;">
           <td class="py-6 font-bold">
-            Status
+            <b>Status</b>
           </td>
           <td class="uppercase">
             delivered
           </td>
           <td class="py-6 font-bold">
-            Delivery location
+            <b>Delivery location</b>
           </td>
           <td>
             Some location
           </td>
         </tr>
         <tr>
-          <td class="py-6 font-bold"> Delivery Date</td>
+          <td class="py-6 font-bold"> <b>Delivery Date</b></td>
           <td>Date</td>
-          <td class="py-6 font-bold">Delivery Time</td>
+          <td class="py-6 font-bold"><b>Delivery Time</b></td>
           <td>11:20</td>
         </tr>
-        <tr>
+        <tr style="margin: 10px 0;">
           <td class="py-6 font-bold">
-            Received by
+            <b>Received by</b>
           </td>
           <td>
             {{pod_details['receiver_name']}}
@@ -66,9 +68,9 @@
           <td></td>
           <td></td>
         </tr>
-        <tr>
+        <tr style="margin: 10px 0;">
           <td class="py-6 font-bold">
-            Signature
+            <b>Signature</b>
           </td>
           <td>
             <img src="{{pod_details['receiver_signature']}}" alt="signature" class="w-1/2">
@@ -80,10 +82,10 @@
         </table>  
     </div> 
       <div class="mt-4 flex flex-row gap-4">
-        <h3 class="text-lg font-bold">
-          Additional Information:
+        <h3 class="text-lg font-bold" style="color: black;">
+          <b>Additional Information:</b>
         </h3>
-        <h3 class="text-lg">
+        <h3 class="text-lg" style="color: black;">
           Please see the attached image for delivery picture.
         </h3>
       </div>

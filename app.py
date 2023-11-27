@@ -18,6 +18,8 @@ app = FastAPI()
 
 pdf = FPDF()
 
+pdf.set_text_color(0, 0, 0)
+
 templates = Jinja2Templates(directory="templates")
 
 
@@ -45,7 +47,7 @@ async def email_pod_pdf(pod_details: PodDetails, request: Request):
     parsed_html = templates.TemplateResponse(
         "index.html", {"request": request, "pod_details": pod_details}
     )
-    # pdf.add_page()
-    # pdf.write_html(parsed_html.body.decode("utf-8"))
-    # pdf.output("output.pdf")
-    return parsed_html
+    pdf.add_page()
+    pdf.write_html(parsed_html.body.decode("utf-8"))
+    pdf.output("output.pdf")
+    return {"message": "Email sent successfully"}
